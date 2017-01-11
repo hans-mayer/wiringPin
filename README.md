@@ -15,7 +15,7 @@ Add about 1000 pulses to PIN 27 so that the time source is 1 ms ahead.
 
 Example 2:  
 Delay the time source for about 1000 us on PIN 22  
-  wiringPitest -d 22 1000 
+  wiringPin -d 22 1000 
 
 Dependencies:
 It is neccessary to have WiringBP installed. 
