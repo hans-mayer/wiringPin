@@ -9,17 +9,17 @@ This software controls the hardware in a limited way. It is possible:
 * to insert additional pulses - GPIO3 
 * to strip off some pulses of the 10 MHz source - GPIO2 
 
-Example 1: 
-Add about 1000 pulses to PIN 27 so that the time source is 1 ms ahead. 
+Example 1:  
+Add about 1000 pulses to PIN 27 so that the time source is 1 ms ahead.  
   wiringPin -i 27 1000
 
-Example 2: 
-Delay the time source for about 1000 us on PIN 22 
+Example 2:  
+Delay the time source for about 1000 us on PIN 22  
   wiringPitest -d 22 1000 
 
 Dependencies:
 It is neccessary to have WiringBP installed. 
 WiringBP can be found https://github.com/LeMaker/WiringBP
 
-![](schaltplan10p7.png) 
+![schaltplan](/schaltplan10p7.png) 
 
