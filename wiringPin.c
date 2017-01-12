@@ -1,7 +1,7 @@
 
 
 /* 
- * Mon Jan  9 22:14:38 CET 2017
+ * Mon Jan  9 22:14:38 CET 2017 - initial 
  * mayer 
  */ 
 
@@ -11,6 +11,8 @@
 #include <stdint.h>
 #include <unistd.h> // for usleep
 #include <time.h>   // for nanosleep
+
+#define VERSION "1.0" 
 
 int pin ; 
 int count ; 
@@ -51,7 +53,8 @@ int main ( int argc, char **argv )
   if (wiringPiSetupGpio() == -1)
     exit (1) ;
 
-  if ( argc > 3 ) 
+  // printf ( "argc : %d \n" , argc ) ; 
+  if ( argc == 4 ) 
       { 
         sscanf ( argv[1], "%s", &option ) ; 
         sscanf ( argv[2], "%d", &pin ) ; 
@@ -59,8 +62,19 @@ int main ( int argc, char **argv )
       }
     else 
       {
-        printf ("usage: %s -i | -d  pin count \n", argv[0] ) ; 
-        exit (1) ; 
+        // printf ( "argc : %d \n" , argc ) ; 
+        if ( argc == 2 ) 
+          { 
+            sscanf ( argv[1], "%s", &option ) ; 
+            if ( option[1] == 'v' ) printf ( " %s - version %s\n", argv[0], VERSION ) ; 
+            exit (1) ; 
+	  }
+          else 
+          {
+            printf ("usage: %s -i | -d  pin count \n", argv[0] ) ; 
+            printf ("          -v    ( show version )  \n" ) ; 
+            exit (1) ; 
+	  } ; 
       } ; 
 
   printf ("Using pin: %s %d %d \n", option, pin , count ) ; 
