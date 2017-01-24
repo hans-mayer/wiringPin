@@ -14,10 +14,11 @@
 
 #define VERSION "1.0" 
 
-int pin ; 
-int count ; 
+int pin ; 	// is the BCM numbering and NOT the physical 
+int count ; 	// number of pulses to insert or delay in usec 
 
 
+// insert count pulses in the given pin 
 pulseonpin()
   {
     int i ; 
@@ -30,9 +31,20 @@ pulseonpin()
     } ; 
   } ; 
 
+// delay for count micro-seconds 
 delayonpin()
   {
     struct timespec ts;
+
+    // we need about 100 till 200 usec for down and up 
+    // therefore do nothing for values below 100
+    if ( count <= 100 ) 
+      {
+        printf ( "delayonpin() delay %d <= 100 - exit \n", count ) ; 
+        exit (1) ; 
+      } ; 
+    // and subtract 100 usec for values above 
+    count -= 100 ; 
     ts.tv_sec = 0 ; 
     ts.tv_nsec = (long)count * 1000 ;
     printf ( "delayonpin() %d %d \n", pin, count ) ; 

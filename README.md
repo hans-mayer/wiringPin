@@ -7,7 +7,9 @@ into a 1PPS ( one puls per second ) which is needed for "ntpd"
 
 This software controls the hardware in a limited way. It is possible: 
 * to insert additional pulses - GPIO3 
-* to strip off some pulses of the 10 MHz source - GPIO2 
+* to strip off (delay) some pulses of the 10 MHz source - GPIO2 
+
+A delay with less than 100 usec is not possible 
 
 Example 1:  
 Add about 1000 pulses to PIN 27 so that the time source is 1 ms ahead.  
