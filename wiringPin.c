@@ -3,6 +3,7 @@
 /* 
  * Mon Jan  9 22:14:38 CET 2017 - initial 
  * mayer 
+   Mon Feb 13 21:07:31 CET 2017 - add 7% more pulses  
  */ 
 
 #include <wiringPi.h>
@@ -12,7 +13,7 @@
 #include <unistd.h> // for usleep
 #include <time.h>   // for nanosleep
 
-#define VERSION "1.0" 
+#define VERSION "1.1" 
 
 int pin ; 	// is the BCM numbering and NOT the physical 
 int count ; 	// number of pulses to insert or delay in usec 
@@ -22,10 +23,13 @@ int count ; 	// number of pulses to insert or delay in usec
 pulseonpin()
   {
     int i ; 
-    printf ( "pulseonpin() %d %d \n", pin, count ) ; 
+    int newcount  ;  /* about 7 % more than we really should do   
+    	 	obviously some pulses are lost */ 
+    newcount = (int)(1.07 * (float)count) ; 
+    printf ( "pulseonpin() %d %d \n", pin, newcount ) ; 
 
     pinMode(pin, OUTPUT); 
-    for ( i=0; i<count; i++) { 
+    for ( i=0; i<newcount; i++) { 
        digitalWrite(pin, HIGH); // Turn LED ON
        digitalWrite(pin, LOW); // Turn LED OFF
     } ; 
