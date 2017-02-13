@@ -3,7 +3,7 @@
 /* 
  * Mon Jan  9 22:14:38 CET 2017 - initial 
  * mayer 
-   Mon Feb 13 21:07:31 CET 2017 - add 7% more pulses  
+   Mon Feb 13 21:07:31 CET 2017 - add 8% more pulses  
  */ 
 
 #include <wiringPi.h>
@@ -23,9 +23,9 @@ int count ; 	// number of pulses to insert or delay in usec
 pulseonpin()
   {
     int i ; 
-    int newcount  ;  /* about 7 % more than we really should do   
+    int newcount  ;  /* about 8 % more than we really should do   
     	 	obviously some pulses are lost */ 
-    newcount = (int)(1.07 * (float)count) ; 
+    newcount = (int)(1.08 * (float)count) ; 
     printf ( "pulseonpin() %d %d \n", pin, newcount ) ; 
 
     pinMode(pin, OUTPUT); 
