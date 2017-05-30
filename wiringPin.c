@@ -4,6 +4,7 @@
  * Mon Jan  9 22:14:38 CET 2017 - initial 
  * mayer 
    Mon Feb 13 21:07:31 CET 2017 - add 8% more pulses  
+   Tue May 30 21:42:56 CEST 2017 - calculate seconds too 
  */ 
 
 #include <wiringPi.h>
@@ -13,7 +14,7 @@
 #include <unistd.h> // for usleep
 #include <time.h>   // for nanosleep
 
-#define VERSION "1.1" 
+#define VERSION "1.2" 
 
 int pin ; 	// is the BCM numbering and NOT the physical 
 int count ; 	// number of pulses to insert or delay in usec 
@@ -39,6 +40,7 @@ pulseonpin()
 delayonpin()
   {
     struct timespec ts;
+    long count1000 ; 
 
     // we need about 100 till 200 usec for down and up 
     // therefore do nothing for values below 100
@@ -49,8 +51,9 @@ delayonpin()
       } ; 
     // and subtract 100 usec for values above 
     count -= 100 ; 
-    ts.tv_sec = 0 ; 
-    ts.tv_nsec = (long)count * 1000 ;
+    count1000 = (long)count * 1000 ; 
+    ts.tv_sec = count / (long)1000000 ; 
+    ts.tv_nsec = count1000 % (long)1000000000 ;
     printf ( "delayonpin() %d %d \n", pin, count ) ; 
 
     pinMode(pin, OUTPUT); 
